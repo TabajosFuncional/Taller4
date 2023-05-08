@@ -1,3 +1,9 @@
+/*
+ * Taller 4: Colecciones y expresiones for
+ * Integrantes: John Freddy Belalcázar - 2182464
+ *              Santiago González Gálvez - 2183392
+ */
+
 package object MatchingProblem {
 
   type Match = (Int, Int)
@@ -14,20 +20,20 @@ package object MatchingProblem {
     matchesAux
   }
 
-  def possibleMatchings(n: Int): List[List[(Int,Int)]] = {
+  def possibleMatchings(n: Int): List[List[Match]] = {
 
     val AllMatches = matchsByElements(n)
     AllMatches.foldLeft(List(List.empty[Match])) { (acc, subLista) =>
       for {
-        x <- acc
-        y <- subLista
-        if !x.exists(_._1 == y._1)
+        x <- acc                           //acc es un acumulador que inicia con List(List()[Match])
+        y <- subLista                      //subLista recorre cada subLista de AllMatches
+        if !x.exists(_._1 == y._1)         //Verifica que no se repita un piloto en la misma sublista
       } yield x :+ y
     }
   }
 
   def matchings (n: Int): List[Matching] = {
-    
+
     def noCopRepetido(subLista: List[(Int, Int)]): Boolean = {
       val copilotos = for (x <- subLista) yield x._2
       copilotos.toSet.size == subLista.length   //Si no hay cops repetidos, el tamaño del conjunto y la sublista original tienen misma longitud -> true
