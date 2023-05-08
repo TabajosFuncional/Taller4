@@ -16,23 +16,22 @@ package object MatchingProblem {
 
   def possibleMatchings(n: Int): List[List[(Int,Int)]] = {
 
-    val matches = matchsByElements(n)
-    matches.foldLeft(List(List.empty[Match])) { (acc, sublist) =>
+    val AllMatches = matchsByElements(n)
+    AllMatches.foldLeft(List(List.empty[Match])) { (acc, subLista) =>
       for {
         x <- acc
-        y <- sublist
+        y <- subLista
         if !x.exists(_._1 == y._1)
       } yield x :+ y
     }
   }
 
   def matchings (n: Int): List[Matching] = {
-
+    
     def noCopRepetido(subLista: List[(Int, Int)]): Boolean = {
-      val setAux = subLista.map(_._2).toSet
-      setAux.size == subLista.length
+      val copilotos = for (x <- subLista) yield x._2
+      copilotos.toSet.size == subLista.length   //Si no hay cops repetidos, el tamaño del conjunto y la sublista original tienen misma longitud -> true
     }
-
     val allMatches = possibleMatchings(n)
     val matchsValidos = for {
       m <- allMatches
