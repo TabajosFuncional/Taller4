@@ -8,7 +8,7 @@ val MBE4 = matchByElement(4,5) // Esperado: List((4,1), (4,2), (4,3), (4,4), (4,
 val MBE5 = matchByElement(5,5) // Esperado: List((5,1), (5,2), (5,3), (5,4), (5,5))
 
 // Pruebas: matchsByElements
-val MBES1 = matchsByElements(1)
+val MBES1 = matchsByElements(1) // Esperado: List(List((1,1)))
 val MBES2 = matchsByElements(2)
 val MBES3 = matchsByElements(3)
 val MBES4 = matchsByElements(4)
@@ -18,7 +18,7 @@ val MBES5 = matchsByElements(5)
 val PM1 = possibleMatchings(1)
 val PM2 = possibleMatchings(2)
 val PM3 = possibleMatchings(3)
-println("Combinaciones posibles PM5 = "+ PM3.length)
+println("Combinaciones posibles PM3 = "+ PM3.length)
 val PM4 = possibleMatchings(4)
 println("Combinaciones posibles PM4 = "+ PM4.length)
 val PM5 = possibleMatchings(5)
