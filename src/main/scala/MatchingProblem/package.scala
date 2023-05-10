@@ -45,12 +45,29 @@ package object MatchingProblem {
     } yield m
     matchsValidos.distinct
   }
-/*
-  def weightedMatchings(n: Int, pilotPrefs: Preferences, navigPrefs: Preferences): List[(Matching, Int)] = {
 
+  def weightedMatchings(n: Int, pilotPrefs: Preferences, navigPrefs: Preferences): List[(Matching, Int)] = {
+    def calcularPeso(subLista: Matching): Int = {
+      val pesos = for {
+        m <- subLista
+      } yield (List(pilotPrefs.take(m._1).last.take(m._2).last, navigPrefs.take(m._2).last.take(m._1).last) foldLeft 1) ((x,y) => x*y)
+      (pesos foldLeft 0) ((x,y) => x+y)
+    }
+    for {
+      m <- matchings(n)
+    } yield (m, calcularPeso(m))
   }
 
   def bestMatching(n: Int, pilotPrefs: Preferences, navigPrefs: Preferences): (Matching, Int) = {
-
-  }*/
+    val matchs = weightedMatchings(n, pilotPrefs, navigPrefs)
+    val pesos = for {
+      m <- matchs
+    } yield m._2
+    val peso_maximo = pesos.max
+    val soluciones = for {
+      m <- matchs
+      if (m._2==peso_maximo)
+    } yield m
+    soluciones.head
+  }
 }

@@ -33,3 +33,20 @@ val match4 = matchings(4)
 println("Combinaciones válidas match4 = "+ match4.length)
 val match5 = matchings(5)
 println("Combinaciones válidas match5 = "+ match5.length)
+
+// Pruebas: weightedMatchings
+val tp = Vector(Vector(2,3,1,1,5), Vector(1,1,4,3,2), Vector(1,2,3,4,1), Vector(2,3,2,1,2), Vector(1,1,2,3,5))
+val tc = Vector(Vector(4,1,3,2,4), Vector(4,2,3,1,5), Vector(1,1,1,4,3), Vector(3,2,3,3,2), Vector(2,4,2,3,1))
+
+weightedMatchings(1,tp,tc)
+weightedMatchings(2,tp,tc)
+weightedMatchings(3,tp,tc)
+weightedMatchings(4,tp,tc)
+weightedMatchings(5,tp,tc)
+
+// Pruebas: bestMatching
+bestMatching(1,tp,tc)
+bestMatching(2,tp,tc)
+bestMatching(3,tp,tc)
+bestMatching(4,tp,tc)
+bestMatching(5,tp,tc)
