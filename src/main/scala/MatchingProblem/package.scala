@@ -51,7 +51,6 @@ package object MatchingProblem {
       val pesos = for {
         m <- subLista
       } yield (List(pilotPrefs.take(m._1).last.take(m._2).last, navigPrefs.take(m._2).last.take(m._1).last) foldLeft 1) ((x,y) => x*y)
-      //println(pesos)
       (pesos foldLeft 0) ((x,y) => x+y)
     }
     for {
