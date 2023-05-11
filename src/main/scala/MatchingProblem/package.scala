@@ -27,7 +27,6 @@ package object MatchingProblem {
       for {
         x <- acc                           //acc es un acumulador que inicia con List(List()[Match])
         y <- subLista                      //subLista recorre cada subLista de AllMatches
-        if !x.exists(_._1 == y._1)         //Verifica que no se repita un piloto en la misma sublista
       } yield x :+ y
     }
   }
@@ -36,14 +35,14 @@ package object MatchingProblem {
 
     def noCopRepetido(subLista: List[(Int, Int)]): Boolean = {
       val copilotos = for (x <- subLista) yield x._2
-      copilotos.toSet.size == subLista.length   //Si no hay cops repetidos, el tamaño del conjunto y la sublista original tienen misma longitud -> true
+      copilotos.toSet.size == subLista.length
     }
     val allMatches = possibleMatchings(n)
     val matchsValidos = for {
       m <- allMatches
       if noCopRepetido(m)
     } yield m
-    matchsValidos.distinct
+    matchsValidos
   }
 
   def weightedMatchings(n: Int, pilotPrefs: Preferences, navigPrefs: Preferences): List[(Matching, Int)] = {
